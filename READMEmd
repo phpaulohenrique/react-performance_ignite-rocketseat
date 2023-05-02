@@ -23,7 +23,7 @@ faz uma shallow compare --> comparação rasa, ou seja um: ' ===  ' mas isso nã
 
 ### QUANDO UTILIZAR O USEMEMO
 
-1. memoizar um valor: evitar que alguma coisa que ocupe muito processamento, ex:calculo muito grande(reduce em varios itens), seja feito toda vez que um componente renderizar.
+1. memoizar um valor: evitar que alguma coisa que ocupe muito processamento, ex:calculo muito grande(reduce em varios itens), seja feito toda vez que um componente entrar em fluxo de renderização
 2. Igualdade referencial - evitar que uma variavel ocupe um novo local em memoria, quando a gente passa aquela informacao a um componente filho, o useMemo tbm evita isso, ex: 
 ` const products,  <ProductItem products={products} />`
 
