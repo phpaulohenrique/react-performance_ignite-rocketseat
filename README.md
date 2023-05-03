@@ -42,20 +42,45 @@ Eu até respondi um tópico recentemente explicando um pouco sobre isso, mas com
 
 Sobre como ficaria, ficaria exatamente da mesma forma o uso do useMemo, por exemplo se você tiver um cálculo simples tipo assim:
 
-``
+"
+Já vi em alguns casos onde o pessoal cria os contexts, e os values passados para o provider são "memoizados"
+
+Algo como:
+"
+```
+const value = useMemo(() => ({
+  valueA: true,
+  valueB: false,
+}), []);
+
+return (
+  <AnyContext.Provider value={value}>
+    {children}
+  </AnyContext.Provider>
+)
+
+```
+A questão é: Faz sentido memoizar os valores? - tem impacto na performance?
+resposta: Por padrão, quando você passa um valor para o Provider, e esse valor muda, todos os componentes que utilizem essa context, mesmo que não utilizem aquele valor, sofrem renderizações.
+
+Ou seja, quando um valor da Context mudar, qualquer componente que utilize essa context, vai ser renderizada novamente.
+
+Então por isso seria importante o useMemo, assim garantindo que quando você tiver algo na sua Context que não é necessária passar para o provider, mas que causa renderizações mesmo assim, o useMemo garantiria que os valores do Provider não renderize novamente por alguma alteração, e assim evitando renderizações em diversos outros componentes.
+
+Mas existem outras soluções legais pra isso que vemos até no Ignite, como por exemplo o use-context-selector, que impede que esse comportamento de renderizar todos os componentes aconteça, mas mesmo assim vale a pena usar o useMemo justamente para garantir que a alteração em uma propriedade não faça a outra renderizar novamente, causando renderizações em vários componentes."
+
+--
+```
 const value = 10
 const quantity = 20
 
 const total = useMemo(() => {
   return value * quantity
 }, [value, quantity])
-
-
-``
-'
-
+```
 Perceba que esse cálculo é um cálculo bem simples, e não seria pesado então teoricamente não necessitaria do useMemo. Mas se esse total precisar ser repassado para um componente filho por propriedade, então esse useMemo acaba sendo necessessário para evitar as renderizações que seriam feitas no componente pai por conta de outras possíveis coisas que possam atualizar 
 Vale lembrar tambem que no exemplo acima, para que o componente filho nao renderize novamente, ele teria que utilizar do memo, para que a renderizacao do pai dispare uma renderizacao no filho.
+
 ---
 
 ## USECALLBACK
