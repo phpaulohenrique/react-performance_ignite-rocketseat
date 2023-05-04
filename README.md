@@ -33,8 +33,8 @@ faz uma shallow compare --> comparação rasa, ou seja um: ' ===  ' mas isso nã
 2. Igualdade referencial - evitar que uma variavel ocupe um novo local em memoria, quando a gente passa aquela informacao a um componente filho, o useMemo tbm evita isso, ex: 
 ` const products = () => value,  <ProductItem products={products} />`
 
-'
-No caso o que o Diego quer dizer é no caso de cálculos complexos que necessitem de useMemo apenas por conta da complexidade de cálculo.
+
+"No caso o que o Diego quer dizer é no caso de cálculos complexos que necessitem de useMemo apenas por conta da complexidade de cálculo.
 
 No ReactJS, sempre que passarmos algo para um componente filho, o ideal é utilizar o useMemo ou até useCallback no caso de funções para que a variável tenha igualdade referencial em memória e não cause re-renderizações desnecessárias quando o componente pai desatualizar.
 
@@ -42,7 +42,7 @@ Eu até respondi um tópico recentemente explicando um pouco sobre isso, mas com
 
 Sobre como ficaria, ficaria exatamente da mesma forma o uso do useMemo, por exemplo se você tiver um cálculo simples tipo assim:
 
-"
+
 Já vi em alguns casos onde o pessoal cria os contexts, e os values passados para o provider são "memoizados"
 
 Algo como:
@@ -100,3 +100,10 @@ Então sempre que eu tiver uma função de um componente Pai que será passada p
 ### QUANDO UTILIZAR O USECALLBACK
 
 1. É uma alternativa pro useState e é legal utilizar ele quando temos muita complexidade na regra de alteração do estado, muitas formas de alterá-lo. Ele ajuda a gente a separar a nossa regra de alteração de estado de forma mais desacoplada do restante do código, e se algum dia precisarmos trocar a regra de alteração desse estado, apenas precisariamos trocar no reducer.
+
+--- 
+## VIRTUALIZAÇÃO
+
+### QUANDO UTILIZAR O USECALLBACK
+1. Listas de muito itens em tela, mais de 50. ex de lib: react-virtualized
+
