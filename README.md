@@ -97,13 +97,13 @@ Então sempre que eu tiver uma função de um componente Pai que será passada p
 ---
 ## USEREDUCER
 
-### QUANDO UTILIZAR O USECALLBACK
+### QUANDO UTILIZAR O USEREDUCER
 
 1. É uma alternativa pro useState e é legal utilizar ele quando temos muita complexidade na regra de alteração do estado, muitas formas de alterá-lo. Ele ajuda a gente a separar a nossa regra de alteração de estado de forma mais desacoplada do restante do código, e se algum dia precisarmos trocar a regra de alteração desse estado, apenas precisariamos trocar no reducer.
 
 --- 
 ## VIRTUALIZAÇÃO
 
-### QUANDO UTILIZAR O USECALLBACK
+### QUANDO UTILIZAR VIRTUALIZAÇÃO
 1. Listas de muito itens em tela, mais de 50. ex de lib: react-virtualized
 
